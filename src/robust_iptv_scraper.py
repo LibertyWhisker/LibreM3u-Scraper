@@ -13,12 +13,11 @@ from datetime import datetime
 from typing import Dict, List, Optional
 import logging
 
-# Configure logging
+# Configure logging - will be updated in __init__ method
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('iptv_scraper.log'),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -36,10 +35,35 @@ class RobustIPTVScraper:
         self.max_retries = 3
         self.retry_delay = 10
         
-        # Create output directory
-        os.makedirs(output_dir, exist_ok=True)
+        # Create organized output directory structure
+        self.create_output_structure()
+        
+        # Configure logging to use organized logs directory
+        log_file = os.path.join(self.logs_dir, 'iptv_scraper.log')
+        file_handler = logging.FileHandler(log_file)
+        file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+        logging.getLogger().addHandler(file_handler)
         
         logging.info(f"Robust IPTV Scraper initialized for server: {server}")
+    
+    def create_output_structure(self):
+        """Create organized output directory structure"""
+        # Main output directory
+        os.makedirs(self.output_dir, exist_ok=True)
+        
+        # Subdirectories for organization
+        self.categories_dir = os.path.join(self.output_dir, "categories")
+        self.streams_dir = os.path.join(self.output_dir, "streams")
+        self.playlists_dir = os.path.join(self.output_dir, "playlists")
+        self.logs_dir = os.path.join(self.output_dir, "logs")
+        
+        # Create subdirectories
+        os.makedirs(self.categories_dir, exist_ok=True)
+        os.makedirs(self.streams_dir, exist_ok=True)
+        os.makedirs(self.playlists_dir, exist_ok=True)
+        os.makedirs(self.logs_dir, exist_ok=True)
+        
+        logging.info(f"Created organized output structure in: {self.output_dir}")
     
     def make_api_request(self, url: str, retries: int = None) -> Optional[Dict]:
         """Make API request with conservative retry logic"""
@@ -77,9 +101,10 @@ class RobustIPTVScraper:
     
     def load_existing_categories(self) -> List[Dict]:
         """Load categories from existing file if available"""
-        if os.path.exists('categories.json'):
+        categories_file = os.path.join(self.categories_dir, 'categories.json')
+        if os.path.exists(categories_file):
             try:
-                with open('categories.json', 'r', encoding='utf-8') as f:
+                with open(categories_file, 'r', encoding='utf-8') as f:
                     categories = json.load(f)
                 logging.info(f"Loaded {len(categories)} categories from existing file")
                 return categories
@@ -101,8 +126,9 @@ class RobustIPTVScraper:
         categories = self.make_api_request(url)
         if categories:
             logging.info(f"Found {len(categories)} categories")
-            # Save for future use
-            with open('categories.json', 'w', encoding='utf-8') as f:
+            # Save for future use in organized location
+            categories_file = os.path.join(self.categories_dir, 'categories.json')
+            with open(categories_file, 'w', encoding='utf-8') as f:
                 json.dump(categories, f, indent=2, ensure_ascii=False)
             return categories
         return []
@@ -130,7 +156,7 @@ class RobustIPTVScraper:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"iptv_complete_playlist_{timestamp}.m3u"
         
-        filepath = os.path.join(self.output_dir, filename)
+        filepath = os.path.join(self.playlists_dir, filename)
         
         logging.info(f"Creating M3U playlist: {filepath}")
         
@@ -175,7 +201,7 @@ class RobustIPTVScraper:
         total_categories = len(categories)
         
         # Check for existing progress
-        progress_file = os.path.join(self.output_dir, "scrape_progress.json")
+        progress_file = os.path.join(self.logs_dir, "scrape_progress.json")
         completed_categories = set()
         
         if os.path.exists(progress_file):
@@ -222,7 +248,7 @@ class RobustIPTVScraper:
             # Save category streams individually
             if streams:
                 safe_filename = f"category_{category_id}_{category_name.replace(' ', '_').replace('/', '_')}.json"
-                filepath = os.path.join(self.output_dir, safe_filename)
+                filepath = os.path.join(self.streams_dir, safe_filename)
                 with open(filepath, 'w', encoding='utf-8') as f:
                     json.dump(streams, f, indent=2, ensure_ascii=False)
             
