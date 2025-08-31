@@ -67,10 +67,10 @@ class M3UScraperApp:
         """Print application banner"""
         banner = """
 ╔══════════════════════════════════════════════════════════════╗
-║                    M3U Scraper v1.0                          ║
-║              IPTV Playlist Generator                          ║
+║                    M3U IPTV Scraper v1.0                    ║
 ║                                                              ║
-║  Extract M3U playlists from Xtreme portal providers         ║
+║  Interactive IPTV Playlist Generator                        ║
+║  Extracts M3U playlists from Xtreme portal providers       ║
 ╚══════════════════════════════════════════════════════════════╝
         """
         print(banner)
