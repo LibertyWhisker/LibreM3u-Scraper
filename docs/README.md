@@ -89,7 +89,7 @@ cd src && python3 robust_iptv_scraper.py <username> <password> <server>
 
 Example:
 ```bash
-cd src && python3 robust_iptv_scraper.py 08b167da9c f185f13b14 http://hi-world.me
+cd src && python3 robust_iptv_scraper.py your_username your_password http://your-provider.com
 ```
 
 ## Input Requirements
@@ -99,14 +99,14 @@ cd src && python3 robust_iptv_scraper.py 08b167da9c f185f13b14 http://hi-world.m
 You'll need:
 - **Username**: Your IPTV provider username
 - **Password**: Your IPTV provider password  
-- **Server URL**: The Xtreme portal server URL (e.g., `http://hi-world.me`)
+- **Server URL**: The Xtreme portal server URL (e.g., `http://your-provider.com`)
 
 ### Example Credentials Format
 
 ```
-Username: 08b167da9c
-Password: f185f13b14
-Server: http://hi-world.me
+Username: your_username_here
+Password: your_password_here
+Server: http://your-provider.com
 ```
 
 ## Output Files

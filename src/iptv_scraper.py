@@ -31,7 +31,7 @@ class IPTVScraper:
         Args:
             username: IPTV username
             password: IPTV password  
-            server: IPTV server URL (e.g., http://hi-world.me)
+            server: IPTV server URL (e.g., http://your-provider.com)
             output_dir: Directory to save output files
         """
         self.username = username
@@ -228,7 +228,7 @@ def main():
     """Main function for command line usage"""
     if len(sys.argv) != 4:
         print("Usage: python3 iptv_scraper.py <username> <password> <server>")
-        print("Example: python3 iptv_scraper.py 08b167da9c f185f13b14 http://hi-world.me")
+        print("Example: python3 iptv_scraper.py your_username your_password http://your-provider.com")
         sys.exit(1)
     
     username = sys.argv[1]

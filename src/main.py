@@ -107,7 +107,7 @@ class M3UScraperApp:
         
         # Server URL
         default_server = self.saved_credentials.get('server', '')
-        server = self.get_user_input("Enter server URL (e.g., http://hi-world.me)", default_server)
+        server = self.get_user_input("Enter server URL (e.g., http://your-provider.com)", default_server)
         if not server:
             print("❌ Server URL is required!")
             sys.exit(1)

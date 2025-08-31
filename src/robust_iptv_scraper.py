@@ -278,7 +278,7 @@ def main():
     """Main function for command line usage"""
     if len(sys.argv) != 4:
         print("Usage: python3 robust_iptv_scraper.py <username> <password> <server>")
-        print("Example: python3 robust_iptv_scraper.py 08b167da9c f185f13b14 http://hi-world.me")
+        print("Example: python3 robust_iptv_scraper.py your_username your_password http://your-provider.com")
         sys.exit(1)
     
     username = sys.argv[1]
