@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Application specific - OUTPUT FILES (CRITICAL: Never commit these!)
+output/*
+!output/.gitkeep
+!output/README.md
+logs/*
+!logs/.gitkeep
+!logs/README.md
+*.m3u
+*.m3u8
+categories.json
+scraper_config.json
+
+# Temporary files
+temp/
+*.tmp
+*.temp
+
+# Sensitive data
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Generated data files
+complete_data.json
+scrape_progress.json
+category_*.json 
