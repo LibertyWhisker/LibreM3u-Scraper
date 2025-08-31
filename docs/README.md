@@ -105,10 +105,10 @@ $ ./run.sh
 **Terminal Output:**
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║                    M3U IPTV Scraper v1.0                    ║
+║                    M3U IPTV Scraper v1.0                     ║
 ║                                                              ║
-║  Interactive IPTV Playlist Generator                        ║
-║  Extracts M3U playlists from Xtreme portal providers       ║
+║  Interactive IPTV Playlist Generator                         ║
+║  Extracts M3U playlists from Xtreme portal providers         ║
 ╚══════════════════════════════════════════════════════════════╝
 
 🔐 Enter your Xtreme portal credentials:
